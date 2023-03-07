@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/zeromicro/go-zero/core/errorx"
 	"net/http"
 	"sync"
 
@@ -101,8 +102,11 @@ func doHandleError(w http.ResponseWriter, err error, handler func(error) (int, a
 			// don't unwrap error and get status.Message(),
 			// it hides the rpc error headers.
 			http.Error(w, err.Error(), errcode.CodeFromGrpcError(err))
+			WriteJson(w, http.StatusBadRequest, map[string]interface{}{"message": err.Error(), "code": errcode.CodeFromGrpcError(err)})
+		} else if _, ok := err.(*errorx.ApiError); ok {
+			WriteJson(w, err.(*errorx.ApiError).Code, map[string]interface{}{"message": err.(*errorx.ApiError).Msg})
 		} else {
-			http.Error(w, err.Error(), http.StatusBadRequest)
+			WriteJson(w, http.StatusBadRequest, map[string]interface{}{"message": err.Error()})
 		}
 
 		return
