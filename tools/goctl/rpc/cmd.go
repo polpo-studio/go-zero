@@ -110,6 +110,9 @@ func init() {
 	templateCmd.Flags().StringVar(&cli.VarStringBranch, "branch", "", "The branch"+
 		" of the remote repo, it does work with --remote")
 
+	protocCmd.Flags().BoolVarP(&cli.VarBoolGroup, "group", "g", false,
+		"Generated in group by rpc annotation")
+
 	Cmd.AddCommand(newCmd)
 	Cmd.AddCommand(protocCmd)
 	Cmd.AddCommand(templateCmd)
