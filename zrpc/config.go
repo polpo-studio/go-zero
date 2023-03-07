@@ -26,6 +26,7 @@ type (
 		NonBlock      bool            `json:",optional"`
 		Timeout       int64           `json:",default=2000"`
 		KeepaliveTime time.Duration   `json:",default=20s"`
+		Enabled       bool            `json:",default=true"`
 		Middlewares   ClientMiddlewaresConf
 	}
 

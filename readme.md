@@ -9,7 +9,7 @@
 - [] 支持代码生成，生成API,RPC 和 web 端的CRUD代码
 - [] 支持多种额外插件如GORM, RocketMQ
 - [X] rpc logic group分组
-
+- [X] rpc client enable/disable
 
 ### RPC 分组
 ```shell
@@ -17,7 +17,7 @@ goctls rpc protoc -I $wd "$wd/slash.proto" --go_out="$output/pb" --go-grpc_out="
 ```
 
 
-```protobu
+```protobuf
 service Greet {
     /// group: foo
     rpc SayHello(HelloReq) returns (HelloResp);
@@ -27,4 +27,10 @@ service Greet {
     
     rpc SayHalo(SayHaloReq) returns (SayHaloResp);
 }
+```
+
+### rpc client enable/disable
+
+```go
+func NewClientIfEnabled(c RpcClientConf, options ...ClientOption) Client {}
 ```

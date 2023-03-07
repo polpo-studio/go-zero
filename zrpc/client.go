@@ -50,6 +50,20 @@ func MustNewClient(c RpcClientConf, options ...ClientOption) Client {
 	return cli
 }
 
+// NewClientIfEnabled returns a Client if it is enabled.
+func NewClientIfEnabled(c RpcClientConf, options ...ClientOption) Client {
+	if !c.Enabled {
+		return nil
+	}
+
+	cli, err := NewClient(c, options...)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return cli
+}
+
 // NewClient returns a Client.
 func NewClient(c RpcClientConf, options ...ClientOption) (Client, error) {
 	var opts []ClientOption
