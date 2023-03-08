@@ -21,9 +21,9 @@ message HiResp {
 
 
 service Greet {
-  /// group: foo
+  // group: foo
   rpc Hello(HelloReq) returns (HelloResp);
 
-  /// group: bar
+  // group: bar
   rpc SayHi(HiReq) returns (HiResp);
 }

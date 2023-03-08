@@ -19,10 +19,10 @@ goctls rpc protoc -I $wd "$wd/slash.proto" --go_out="$output/pb" --go-grpc_out="
 
 ```protobuf
 service Greet {
-    /// group: foo
+    // group: foo
     rpc SayHello(HelloReq) returns (HelloResp);
     
-    /// group: bar
+    // group: bar
     rpc SayHi(HiReq) returns (HiResp);
     
     rpc SayHalo(SayHaloReq) returns (SayHaloResp);

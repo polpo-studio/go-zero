@@ -64,7 +64,7 @@ func (p *DefaultProtoParser) Parse(src string, multiple ...bool) (Proto, error) 
 					continue
 				}
 				r2 := &RPC{RPC: v}
-				if v.Comment != nil && v.Comment.ExtraSlash && v.Comment.Lines[0] != "" {
+				if v.Comment != nil && v.Comment.Lines[0] != "" {
 					if strings.Contains(v.Comment.Lines[0], "group:") {
 						r2.GroupName = strings.Trim(strings.Split(v.Comment.Lines[0], "group:")[1], " ")
 					}
